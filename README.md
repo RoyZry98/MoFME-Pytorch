@@ -33,7 +33,7 @@ pip install -r requirements.txt
   ep=200  # training epoch
   lr=0.0002  # learning rate
   scheduler='cosine+warmup'  # scheduler, optional: []
-  task='low_level'   # optional: derain, desnow, deraindrop(allweather), dehaze(maw_sim, maw_real)
+  task='low_level'   # optional: derain, desnow, deraindrop(allweather)
   dataset='allweather'  # optional: allweather
   model='mowe'       # optional: []
   dim=384  # embedding dimension of Transformer backbone
@@ -63,7 +63,9 @@ pip install -r requirements.txt
 
 6. Test the model:
 - After training, use the official Allweather test set.
+
   output_dir: set as the output dir of the testing metrics 
+
   model_path: replaced to the path of best_metric.pth
   ```
   output_dir=allweather_moe-film-linear-basenet-star-gelu-n${n}-k${k}_ep200
@@ -78,6 +80,7 @@ pip install -r requirements.txt
 
 7. Infer all images under a directory:
 - Configure the script:
+
   Change $model_path, $output_dir, $task[optional: derain, deraindrop, desnow], $cuda
   ```
   bash scripts_infer.sh
@@ -85,6 +88,7 @@ pip install -r requirements.txt
 
 8. Infer a single image:
 - Configure the script:
+
   Change $model_path, $output_dir, $img_path, $task[optional: derain, deraindrop, desnow], $cuda
   ```
   bash scripts_infer_one.sh
