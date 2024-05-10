@@ -40,10 +40,13 @@ pip install -r requirements.txt
   interval=20  # Test once per ${interval} epoch
   ```
 
-- Adjust the number of GPUs:
+- Adjust the number of GPUs to be used:
   ```
   export CUDA_VISIBLE_DEVICES='4,5,6,7'
-  torchrun --master_port 29510 --nproc_per_node=4 train.py --gpu-list 4 5 6 7
+  
+  torchrun --master_port 29510 --nproc_per_node=4 train.py \
+  
+  --gpu-list 4 5 6 7
   ```
 
 - Run baseline and naive MoE:
@@ -59,9 +62,10 @@ pip install -r requirements.txt
 ## Testing
 
 6. Test the model:
-- After training, use the official Allweather test set:
+- After training, use the official Allweather test set.
+  output_dir: set as the output dir of the testing metrics 
+  model_path: replaced to the path of best_metric.pth
   ```
-  test_dir=output/test
   output_dir=allweather_moe-film-linear-basenet-star-gelu-n${n}-k${k}_ep200
   model_path=output/train/allweather_moe-film-linear-basenet-star-gelu-n${n}-k${k}_bs64_ep200_ps8_embed384_mlpx4_mlpupsample-outchx4_cnn-embed_wo-pe_normalize_vgg0.04_lr0.0002/best_metric.pth
   ```
@@ -74,12 +78,14 @@ pip install -r requirements.txt
 
 7. Infer all images under a directory:
 - Configure the script:
+  Change $model_path, $output_dir, $task[optional: derain, deraindrop, desnow], $cuda
   ```
   bash scripts_infer.sh
   ```
 
 8. Infer a single image:
 - Configure the script:
+  Change $model_path, $output_dir, $img_path, $task[optional: derain, deraindrop, desnow], $cuda
   ```
   bash scripts_infer_one.sh
   ```
