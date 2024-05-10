@@ -64,9 +64,9 @@ pip install -r requirements.txt
 6. Test the model:
 - After training, use the official Allweather test set.
 
-  output_dir: set as the output dir of the testing metrics 
+  `$output_dir`: set as the output dir of the testing metrics 
 
-  model_path: replaced to the path of best_metric.pth
+  `$model_path`: replaced to the path of best_metric.pth
   ```
   output_dir=allweather_moe-film-linear-basenet-star-gelu-n${n}-k${k}_ep200
   model_path=output/train/allweather_moe-film-linear-basenet-star-gelu-n${n}-k${k}_bs64_ep200_ps8_embed384_mlpx4_mlpupsample-outchx4_cnn-embed_wo-pe_normalize_vgg0.04_lr0.0002/best_metric.pth
@@ -81,7 +81,7 @@ pip install -r requirements.txt
 7. Infer all images under a directory:
 - Configure the script:
 
-  Change $model_path, $output_dir, $task[optional: derain, deraindrop, desnow], $cuda
+  Change `$model_path`, `$output_dir`, `$task[optional: derain, deraindrop, desnow]`, `$cuda`
   ```
   bash scripts_infer.sh
   ```
@@ -89,7 +89,7 @@ pip install -r requirements.txt
 8. Infer a single image:
 - Configure the script:
 
-  Change $model_path, $output_dir, $img_path, $task[optional: derain, deraindrop, desnow], $cuda
+  Change `$model_path`, `$output_dir`, `$img_path`, `$task[optional: derain, deraindrop, desnow]`, `$cuda`
   ```
   bash scripts_infer_one.sh
   ```
