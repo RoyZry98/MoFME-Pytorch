@@ -1,4 +1,7 @@
 # Efficient Deweather Mixture-of-Experts with Uncertainty-aware Feature-wise Linear Modulation [**[Paper]**](https://ojs.aaai.org/index.php/AAAI/article/download/29622/31055)
+Rongyu Zhang, Yulin Luo, Jiaming Liu, Huanrui Yang, Zhen Dong, Denis Gudovskiy, Tomoyuki Okuno, Yohei Nakata, Kurt Keutzer, Yuan Du, Shanghang Zhang
+
+<img src="mofme.png"/>
 
 ## Installation
 
