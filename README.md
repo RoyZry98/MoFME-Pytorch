@@ -96,3 +96,17 @@ pip install -r requirements.txt
   ```
   bash scripts_infer_one.sh
   ```
+
+## Citation
+Please cite our work if you find it useful.
+```bibtex
+@inproceedings{zhang2024efficient,
+  title={Efficient Deweahter Mixture-of-Experts with Uncertainty-Aware Feature-Wise Linear Modulation},
+  author={Zhang, Rongyu and Luo, Yulin and Liu, Jiaming and Yang, Huanrui and Dong, Zhen and Gudovskiy, Denis and Okuno, Tomoyuki and Nakata, Yohei and Keutzer, Kurt and Du, Yuan and others},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={38},
+  number={15},
+  pages={16812--16820},
+  year={2024}
+}
+```
