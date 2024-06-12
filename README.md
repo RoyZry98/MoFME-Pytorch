@@ -3,13 +3,13 @@
 ## Installation
 
 1. Clone the repository:
-
+  ```
 git clone https://github.com/RoyZry98/MoFME-AAAI2024-Offiicial.git
-
+  ```
 2. Install the required packages:
-
+  ```
 pip install -r requirements.txt
-
+  ```
 ## Dataset Preparation
 
 3. Download the Allweather Dataset via Baidu Netdisk:
