@@ -1,5 +1,5 @@
 # Efficient Deweather Mixture-of-Experts with Uncertainty-aware Feature-wise Linear Modulation
-![Python 3.9](https://img.shields.io/badge/Python-3.9-blue)
+![Python 3.8](https://img.shields.io/badge/Python-3.8-blue)
 [![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://ojs.aaai.org/index.php/AAAI/article/download/29622/31055)
 
 <img src="mofme.png"/>
