@@ -79,13 +79,40 @@ class Transformer_MoE_FiLM(nn.Module):
         weights_list = []
         bs, n, d = x.shape
         device = x.device
+        estimate_time = 5
+        uncertainty_list = []
 
         for i, (attn, router, adaptor, ff_list) in enumerate(self.layers):
             
             x = attn(x) + x
 
-            weights = router(x)  # origin: token level routing, [b, n, d]
-            
+            # uncertainty estimation
+            if self.training:
+            # Compute uncertainty only during training
+                for i in range(estimate_time):
+                    weights = router(x)  # origin: token level routing, [b, n, d]
+                    uncertainty_list.append(weights)
+                weights = torch.mean(torch.stack(uncertainty_list, dim=0), dim=0)  # Average over all samples
+                
+                # Calculate covariance matrix
+                weights_centered = torch.stack(uncertainty_list, dim=0) - weights.unsqueeze(0)  # Center the weights [estimate_time, b, n, num_expert]
+                cov = torch.einsum('ijkl,ijkm->jklm', weights_centered, weights_centered) / (estimate_time - 1)  # [b, n, num_expert, num_expert]
+                cov_inv = torch.inverse(cov + torch.eye(cov.shape[-1], device=device).unsqueeze(0).unsqueeze(0) * 1e-5)  # Add regularization for numerical stability
+    
+                # Normalize each sample
+                normalized_weights_list = []
+                for weights_sample in uncertainty_list:
+                    diff = weights_sample - weights  # [b, n, num_expert]
+                    transformed_diff = torch.einsum('ijk,jklm->ijlm', diff, cov_inv)  # [b, n, num_expert]
+                    norm = torch.norm(transformed_diff, dim=2, keepdim=True)  # [b, n, 1]
+                    normalized_weights = transformed_diff / (norm + 1e-5)  # Avoid division by zero
+                    normalized_weights_list.append(normalized_weights)
+    
+                # Optionally, use the normalized weights directly or some function of them
+                weights = torch.mean(torch.stack(normalized_weights_list, dim=0), dim=0)  # Average normalized weights
+            else:
+                weights = router(x)  # origin: token level routing, [b, n, d]
+                
             y = 0
 
             # basenet
