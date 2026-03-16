@@ -17,8 +17,8 @@ pip install -r requirements.txt
 ## Dataset Preparation
 
 3. Download the Allweather Dataset via Baidu Netdisk:
-- Link: [https://pan.baidu.com/s/1hIeYU_OolKKUBx8N2FUlhA?pwd=lgap](https://pan.baidu.com/s/1hIeYU_OolKKUBx8N2FUlhA?pwd=lgap)
-- Code: `lgap`
+- Link: [https://pan.baidu.com/s/1oQUvpkrminld-Lir6blEIg?pwd=ybqc](https://pan.baidu.com/s/1oQUvpkrminld-Lir6blEIg?pwd=ybqc)
+- Code: `ybqc`
 
 4. Modify the dataset path:
 - In `MoWE_DDP/configs/dataset_cfg.py`, replace `'/data/lyl/data/allweather'` on line 39 with your dataset path.
